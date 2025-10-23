@@ -6,7 +6,7 @@
 /*   By: red <red@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:21:56 by red               #+#    #+#             */
-/*   Updated: 2025/10/22 19:22:10 by red              ###   ########.fr       */
+/*   Updated: 2025/10/23 16:02:45 by red              ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -19,7 +19,7 @@ unsigned int	ft_strlcpy(char *dst, const char *src, size_t size)
 	if (!src)
 		return (0);
 	i = 0;
-	while (size > 0)
+	while (size > 0 && src[i])
 	{
 		dst[i] = src[i];
 		i++;
