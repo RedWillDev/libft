@@ -1,37 +1,23 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: red <red@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/22 19:53:08 by red               #+#    #+#             */
-/*   Updated: 2025/10/23 15:30:34 by red              ###   ########.fr       */
+/*   Created: 2025/10/23 15:31:33 by red               #+#    #+#             */
+/*   Updated: 2025/10/23 15:44:27 by red              ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *big, const char *little, size_t len)
+void	*ft_calloc( size_t elementCount, size_t elementSize )
 {
-	size_t	i;
-	size_t	x;
+	void *ptr;
 
-	if (!little || little[0] == '\0')
-		return ((char *)big);
-	i = 0;
-	len++;
-	while (big[i] && len-- > 0)
-	{
-		x = 0;
-		if (big[i] == little[0])
-		{
-			while (big[i + x] == little[x] && (big[i + x] && little[x]) && len-- > 0)
-				x++;
-			if (x == ft_strlen((char *)little))
-				return ((char *)&big[i]);
-		}
-		i++;
-	}
-	return (NULL);
+	if (!(ptr = (void *)malloc(elementCount * elementSize)))
+		return (NULL);
+	ft_bzero(ptr, elementCount * elementSize);
+	return (ptr);
 }

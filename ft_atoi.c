@@ -1,37 +1,33 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: red <red@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/22 19:53:08 by red               #+#    #+#             */
-/*   Updated: 2025/10/23 15:30:34 by red              ###   ########.fr       */
+/*   Created: 2025/10/23 15:19:33 by red               #+#    #+#             */
+/*   Updated: 2025/10/23 15:30:24 by red              ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *big, const char *little, size_t len)
+int ft_atoi( const char * theString )
 {
-	size_t	i;
-	size_t	x;
+  int i;
+  int value;
 
-	if (!little || little[0] == '\0')
-		return ((char *)big);
-	i = 0;
-	len++;
-	while (big[i] && len-- > 0)
-	{
-		x = 0;
-		if (big[i] == little[0])
-		{
-			while (big[i + x] == little[x] && (big[i + x] && little[x]) && len-- > 0)
-				x++;
-			if (x == ft_strlen((char *)little))
-				return ((char *)&big[i]);
-		}
-		i++;
-	}
-	return (NULL);
+  i = 0;
+  value = 0;
+  if (theString[0] == '-')
+    i++;
+  while (theString[i] && ft_isdigit(theString[i]))
+  {
+    value = (value * 10) + (theString[i] - '0');
+    i++;
+  }
+  if (theString[0] == '-')
+    return -value;
+  else
+    return value;
 }
