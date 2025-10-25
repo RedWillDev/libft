@@ -6,7 +6,7 @@
 /*   By: red <red@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 18:53:22 by red               #+#    #+#             */
-/*   Updated: 2025/10/24 23:15:21 by red              ###   ########.fr       */
+/*   Updated: 2025/10/25 16:29:22 by red              ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -37,21 +37,23 @@ static char **fill_that(char *src, char **dst, char c)
   size_t len;
 
   i = 0;
+  x =  -1;
   len = 0;
-  x =  0;
-  while ( x < ft_wordcount(src, c) && dst[i])
+  printf("=== i >> %ld, x >> %ld, len >> %ld === \n", i, x, len);
+  while (src[i])
   {
-    if (src[i] == c)
+    printf("=== i >> %ld, x >> %ld, len >> %ld ===\n", i, x, len);
+    if (src[i] == c && (dst[x++] = ft_substr(src, i-len, len)))
     {
-      dst[x] = ft_substr(src, i-len, len);
       while (src[i] == c)
         i++;
-      x++;
       len = 0;
-      i--;
     }
-    i++;
-    len++;
+    else
+    {
+      i++;
+      len++;
+    }
   }
   return (dst);
 }
@@ -60,12 +62,12 @@ char **ft_split(char const *s, char c)
 {
   char **ptr;
   char *str;
-  char c2[] = "c";// a tej
+  char c2[1];// a tej
 
+  c2[0] = c;
   str = ft_strtrim(s, c2);
   if (!(ptr = ft_calloc(ft_wordcount(str, c), sizeof(char *))))
     return (NULL);
-  
   return (fill_that(str, ptr, c));
 }
 
@@ -79,7 +81,7 @@ char **ft_split(char const *s, char c)
 // récupéré l'addresse de x et faie un substr pour importé automatique le str avec la bonne taille
 
 int main() {
-  char str[] = "Salutxcommentxtuxva";
+  char str[] = " xx Salut xx comment xx tu xx va xx ";
   char **words = ft_split(str, 'x');
   if (words) {
       printf("Mots séparés :\n");
