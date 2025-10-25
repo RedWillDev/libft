@@ -6,7 +6,7 @@
 /*   By: red <red@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 18:53:22 by red               #+#    #+#             */
-/*   Updated: 2025/10/25 16:29:22 by red              ###   ########.fr       */
+/*   Updated: 2025/10/25 16:51:56 by red              ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -37,24 +37,25 @@ static char **fill_that(char *src, char **dst, char c)
   size_t len;
 
   i = 0;
-  x =  -1;
+  x =  0;
   len = 0;
-  printf("=== i >> %ld, x >> %ld, len >> %ld === \n", i, x, len);
   while (src[i])
   {
-    printf("=== i >> %ld, x >> %ld, len >> %ld ===\n", i, x, len);
-    if (src[i] == c && (dst[x++] = ft_substr(src, i-len, len)))
+    if ((src[i] == c) && (dst[x] = ft_substr(src, i - len, len)))
     {
-      while (src[i] == c)
-        i++;
-      len = 0;
+        while (src[i] == c)
+            i++;
+        x++;
+        len = 0;
     }
     else
     {
-      i++;
-      len++;
+        i++;
+        len++;
     }
   }
+  if (len > 0)
+    dst[x++] = ft_substr(src, i - len, len);
   return (dst);
 }
 
@@ -80,19 +81,19 @@ char **ft_split(char const *s, char c)
 
 // récupéré l'addresse de x et faie un substr pour importé automatique le str avec la bonne taille
 
-int main() {
-  char str[] = " xx Salut xx comment xx tu xx va xx ";
-  char **words = ft_split(str, 'x');
-  if (words) {
-      printf("Mots séparés :\n");
-      printf("%s\n", words[0]);
-      printf("%s\n", words[1]);
-      printf("%s\n", words[2]);
-      printf("%s\n", words[3]);
-      free(words); // Libérer la mémoire allouée pour le tableau de mots
-  } else {
-      printf("Erreur lors de l'allocation mémoire.\n");
-  }
+/* int main() {
+    char str[] = "xxxHelloxxxworld!xxxxx";
+    char **words = ft_split(str, 'x');
 
-  return 0;
-}
+    if (words) {
+        printf("Mots separes :\n");
+        for (int i = 0; words[i] != NULL; i++) {
+            printf("%s\n", words[i]);
+            free(words[i]); // Libérer la mémoire allouée pour chaque mot
+        }
+        free(words); // Libérer la mémoire allouée pour le tableau de mots
+    } else {
+        printf("Erreur lors de l'allocation mémoire.\n");
+    }
+    return 0;
+} */
