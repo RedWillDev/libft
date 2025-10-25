@@ -6,7 +6,7 @@
 /*   By: red <red@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:21:46 by red               #+#    #+#             */
-/*   Updated: 2025/10/22 19:21:47 by red              ###   ########.fr       */
+/*   Updated: 2025/10/25 17:15:21 by red              ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -18,7 +18,7 @@ void	*ft_memmove(void *destination, const void *source, size_t size)
 	unsigned char	*src;
 
 	if (!destination && !source)
-		return (dst);
+		return (destination);
 	src = (unsigned char *)source;
 	dst = (unsigned char *)destination;
 	if (dst > src)
