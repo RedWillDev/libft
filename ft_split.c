@@ -6,7 +6,7 @@
 /*   By: red <red@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 18:53:22 by red               #+#    #+#             */
-/*   Updated: 2025/10/25 16:51:56 by red              ###   ########.fr       */
+/*   Updated: 2025/10/27 14:34:45 by red              ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -67,7 +67,8 @@ char **ft_split(char const *s, char c)
 
   c2[0] = c;
   str = ft_strtrim(s, c2);
-  if (!(ptr = ft_calloc(ft_wordcount(str, c), sizeof(char *))))
+  ptr = ft_calloc((ft_wordcount(str, c) + 1), sizeof(char *));
+  if (!ptr)
     return (NULL);
   return (fill_that(str, ptr, c));
 }

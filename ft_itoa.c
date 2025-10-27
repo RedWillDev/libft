@@ -1,30 +1,43 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: red <red@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/25 16:53:14 by red               #+#    #+#             */
-/*   Updated: 2025/10/27 14:07:47 by red              ###   ########.fr       */
+/*   Created: 2025/10/27 14:48:10 by red               #+#    #+#             */
+/*   Updated: 2025/10/27 14:48:25 by red              ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "libft.h"
+#include <unistd.h>
 
-char *ft_itoa(int n)
+static size_t	ft_numlen(int n)
 {
-	long num;
-	char *ptr;
-	size_t numlen;
-	int tmp;
-	
+	size_t	len;
+
+	len = 0;
+	while (n != 0)
+	{
+		n /= 10;
+		len++;
+	}
+	return (len);
+}
+
+char	*ft_itoa(int n)
+{
+	size_t	numlen;
+	long	num;
+	char	*ptr;
+	int		tmp;
+
 	num = n;
-	numlen = 1;
-	while ((n /= 10) != 0)
-		numlen++;
-	if(!(ptr = malloc(numlen + 1* sizeof(char))))
-		return NULL;
+	numlen = ft_numlen(n);
+	ptr = (char *)malloc((numlen + 1) * sizeof(char));
+	if (!ptr)
+		return (NULL);
 	tmp = 0;
 	ptr[numlen] = '\0';
 	if (num < 0)
@@ -35,8 +48,8 @@ char *ft_itoa(int n)
 	}
 	while (numlen-- != 0)
 	{
-		ptr[numlen + tmp ] = (num % 10) + '0';
+		ptr[numlen + tmp] = (num % 10) + '0';
 		num /= 10;
 	}
-	return(ptr);
+	return (ptr);
 }
