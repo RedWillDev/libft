@@ -6,14 +6,14 @@
 /*   By: red <red@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:21:52 by red               #+#    #+#             */
-/*   Updated: 2025/10/25 18:05:20 by red              ###   ########.fr       */
+/*   Updated: 2025/10/25 18:18:53 by red              ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "libft.h"
 #include <stdio.h>
 
-size_t	ft_strlcat(char *dst, const char *src, size_t size)
+size_t  ft_strlcat(char *dst, const char *src, size_t size)
 {
 	size_t	i;
 	size_t	x;
@@ -30,17 +30,17 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 		size--;
 	}
 	dst[ft_strlen(dst)] = '\0';
-	return (ft_strlen(dst));
+	return (ft_strlen(src));
 }
 
-int main(int argc, char const *argv[])
+/* int main(int argc, char const *argv[])
 {
 	(void)argc;
 	(void)argv;
 	char dest[50] = "pqrstuvwxyz";
-	char src[] = "pqrstuvwxyz";
-	printf("strlcat returned %ld \n", ft_strlcat(dest, src, 20));
+	char src[] = "abcd";
+	printf("strlcat returned %ld \n", ft_strlcat(dest, src, 1));
 	printf("Resulting string: %s\n", dest);
 	return 0;
-}
+} */
 

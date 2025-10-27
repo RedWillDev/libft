@@ -6,44 +6,37 @@
 /*   By: red <red@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/25 16:53:14 by red               #+#    #+#             */
-/*   Updated: 2025/10/25 17:39:43 by red              ###   ########.fr       */
+/*   Updated: 2025/10/27 14:07:47 by red              ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "libft.h"
-#include <math.h>
-
-
 
 char *ft_itoa(int n)
 {
-	size_t num;
+	long num;
 	char *ptr;
-	char nu[1];
 	size_t numlen;
+	int tmp;
 	
-	num = (size_t)n;
+	num = n;
 	numlen = 1;
-	while ((num/10) > 1)
+	while ((n /= 10) != 0)
 		numlen++;
-	if(!(ptr = malloc(numlen * sizeof(char ))))
+	if(!(ptr = malloc(numlen + 1* sizeof(char))))
 		return NULL;
-	if (n < 0)
-		ptr[0] = '-';
-	if (num > 0 && num <= 9)
+	tmp = 0;
+	ptr[numlen] = '\0';
+	if (num < 0)
 	{
-		nu[0] = (num % 10) + '0';
-		ft_strlcat(ptr, nu, 1);
+		ptr[0] = '-';
+		tmp = 1;
+		num = -num;
 	}
-	else
-		ft_itoa((int)num / 10);
+	while (numlen-- != 0)
+	{
+		ptr[numlen + tmp ] = (num % 10) + '0';
+		num /= 10;
+	}
 	return(ptr);
-}
-
-int main(int argc, char const *argv[])
-{
-	(void)argc;
-	(void)argv;
-	printf("itoa returned %s \n", ft_itoa(10));
-	return 0;
 }
