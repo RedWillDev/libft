@@ -1,30 +1,32 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: red <red@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: red <red@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/22 19:21:40 by red               #+#    #+#             */
-/*   Updated: 2025/10/23 17:18:20 by red              ###   ########.fr       */
+/*   Created: 2026/10/19 15:37:20 by red          #+#    #+#             */
+/*   Updated: 2026/10/19 15:37:20 by red          ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *destination, const void *source, size_t size )
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	unsigned char	*dst;
-	unsigned char	*src;
+	unsigned char		*d;
+	const unsigned char	*s;
+	size_t				i;
 
-	if (!destination && !source)
-		return (destination);
-	src = (unsigned char *)source;
-	dst = (unsigned char *)destination;
-	while (size > 0)
+	if (n == 0 || dst == src)
+		return (dst);
+	d = (unsigned char *)dst;
+	s = (const unsigned char *)src;
+	i = 0;
+	while (i < n)
 	{
-		*(src++) = *(dst++);
-		size--;
+		d[i] = s[i];
+		i++;
 	}
 	return (dst);
 }

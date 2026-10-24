@@ -1,39 +1,29 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: red <red@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: red <red@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/23 17:36:47 by red               #+#    #+#             */
-/*   Updated: 2025/10/24 20:03:31 by red              ###   ########.fr       */
+/*   Created: 2026/10/19 15:37:20 by red          #+#    #+#             */
+/*   Updated: 2026/10/19 15:37:20 by red          ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "libft.h"
 
-char *ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-  char *ptr;
-  size_t i;
+	size_t	start;
+	size_t	end;
 
-  i = 0;
-  if(!(ptr = ft_strdup(s1)))
-    return (NULL);
-  while (ptr[i])
-  {
-    if (ft_strchr(set, ptr[i]) && ft_strchr(set, ptr[i+1]) == NULL && 
-    ft_strchr(set, ptr[0]))
-    {
-      if(!(ptr = ft_strdup(&ptr[i + 1])))
-        return (NULL);
-      i = 0;
-    }
-    if (ft_strchr(set, ptr[ft_strlen(ptr) - 1]) && 
-    !(ft_strchr(set, ptr[ft_strlen(ptr) - i - 2])) && 
-    ft_strchr(set, ptr[ft_strlen(ptr) - 1]))
-      ft_strlcpy(ptr, ptr, ft_strlen(ptr) - i - 1);
-    i++;
-  }
-  return(ptr);
+	if (!s1 || !set)
+		return (NULL);
+	start = 0;
+	while (s1[start] && ft_strchr(set, s1[start]))
+		start++;
+	end = ft_strlen(s1);
+	while (end > start && ft_strchr(set, s1[end - 1]))
+		end--;
+	return (ft_substr(s1, (unsigned int)start, end - start));
 }

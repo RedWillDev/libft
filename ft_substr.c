@@ -1,23 +1,33 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: red <red@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: red <red@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/23 16:40:27 by red               #+#    #+#             */
-/*   Updated: 2025/10/23 16:59:24 by red              ###   ########.fr       */
+/*   Created: 2026/10/19 15:37:20 by red          #+#    #+#             */
+/*   Updated: 2026/10/19 15:37:20 by red          ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "libft.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-  char *ptr;
+	char	*out;
+	size_t	slen;
 
-  if (!(ptr = (char *)malloc(len * sizeof(char))))
-    return (NULL);
-	ft_strlcpy(ptr, &s[start], len);
-  return (ptr);
+	if (!s)
+		return (NULL);
+	slen = ft_strlen(s);
+	if (start >= slen)
+		return (ft_strdup(""));
+	if (len > slen - start)
+		len = slen - start;
+	out = malloc(len + 1);
+	if (!out)
+		return (NULL);
+	ft_memcpy(out, s + start, len);
+	out[len] = '\0';
+	return (out);
 }

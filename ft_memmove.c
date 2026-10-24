@@ -1,41 +1,34 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: red <red@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: red <red@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/22 19:21:46 by red               #+#    #+#             */
-/*   Updated: 2025/10/25 17:15:21 by red              ###   ########.fr       */
+/*   Created: 2026/10/19 15:37:20 by red          #+#    #+#             */
+/*   Updated: 2026/10/19 15:37:20 by red          ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *destination, const void *source, size_t size)
+void	*ft_memmove(void *dst, const void *src, size_t n)
 {
-	unsigned char	*dst;
-	unsigned char	*src;
+	unsigned char		*d;
+	const unsigned char	*s;
+	size_t				i;
 
-	if (!destination && !source)
-		return (destination);
-	src = (unsigned char *)source;
-	dst = (unsigned char *)destination;
-	if (dst > src)
+	if (dst == src || n == 0)
+		return (dst);
+	d = (unsigned char *)dst;
+	s = (const unsigned char *)src;
+	if (d < s)
+		return (ft_memcpy(dst, src, n));
+	i = n;
+	while (i > 0)
 	{
-		while (size > 0)
-		{
-			dst[size] = src[size];
-			size--;
-		}
-	}
-	else
-	{
-		while (size > 0)
-		{
-			*(src++) = *(dst++);
-			size--;
-		}
+		i--;
+		d[i] = s[i];
 	}
 	return (dst);
 }

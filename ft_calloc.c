@@ -1,23 +1,30 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: red <red@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: red <red@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/23 15:31:33 by red               #+#    #+#             */
-/*   Updated: 2025/10/23 15:44:27 by red              ###   ########.fr       */
+/*   Created: 2026/10/19 15:37:20 by red          #+#    #+#             */
+/*   Updated: 2026/10/19 15:37:20 by red          ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc( size_t elementCount, size_t elementSize )
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	void *ptr;
+	void	*ptr;
+	size_t	total;
 
-	if (!(ptr = (void *)malloc(elementCount * elementSize)))
+	if (size != 0 && nmemb > ((size_t)-1) / size)
 		return (NULL);
-	ft_bzero(ptr, elementCount * elementSize);
+	total = nmemb * size;
+	if (total == 0)
+		total = 1;
+	ptr = malloc(total);
+	if (!ptr)
+		return (NULL);
+	ft_bzero(ptr, total);
 	return (ptr);
 }

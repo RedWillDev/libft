@@ -1,33 +1,43 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: red <red@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: red <red@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/23 15:19:33 by red               #+#    #+#             */
-/*   Updated: 2025/10/23 15:30:24 by red              ###   ########.fr       */
+/*   Created: 2026/10/19 15:37:20 by red          #+#    #+#             */
+/*   Updated: 2026/10/19 15:37:20 by red          ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "libft.h"
 
-int ft_atoi( const char * theString )
+static int	ft_isspace(int c)
 {
-  int i;
-  int value;
+	return (c == ' ' || (c >= 9 && c <= 13));
+}
 
-  i = 0;
-  value = 0;
-  if (theString[0] == '-')
-    i++;
-  while (theString[i] && ft_isdigit(theString[i]))
-  {
-    value = (value * 10) + (theString[i] - '0');
-    i++;
-  }
-  if (theString[0] == '-')
-    return -value;
-  else
-    return value;
+int	ft_atoi(const char *str)
+{
+	size_t	i;
+	long	n;
+	int		sign;
+
+	i = 0;
+	n = 0;
+	sign = 1;
+	while (ft_isspace(str[i]))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			sign = -1;
+		i++;
+	}
+	while (ft_isdigit(str[i]))
+	{
+		n = n * 10 + str[i] - '0';
+		i++;
+	}
+	return ((int)(n * sign));
 }

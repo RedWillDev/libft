@@ -1,30 +1,28 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: red <red@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: red <red@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/22 19:21:33 by red               #+#    #+#             */
-/*   Updated: 2025/10/22 19:21:34 by red              ###   ########.fr       */
+/*   Created: 2026/10/19 15:37:20 by red          #+#    #+#             */
+/*   Updated: 2026/10/19 15:37:20 by red          ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(const void *memoryBlock, int searchedChar, size_t size)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	unsigned char	*ptr;
-	unsigned char	rsh;
-	size_t			i;
+	const unsigned char	*p;
+	size_t				i;
 
-	ptr = (unsigned char *)memoryBlock;
-	rsh = (unsigned char)searchedChar;
+	p = (const unsigned char *)s;
 	i = 0;
-	while (i < size)
+	while (i < n)
 	{
-		if (ptr[i] == rsh)
-			return ((void *)&ptr[i]);
+		if (p[i] == (unsigned char)c)
+			return ((void *)&p[i]);
 		i++;
 	}
 	return (NULL);
