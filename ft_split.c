@@ -33,14 +33,14 @@ static size_t	ft_count_words(char const *s, char c)
 	return (count);
 }
 
-static char	**ft_clear_split(char **words, size_t n)
+static char	**ft_clear_split(char **n, size_t words)
 {
-	while (n > 0)
+	while (words > 0)
 	{
-		n--;
-		free(words[n]);
+		words--;
+		free(n[words]);
 	}
-	free(words);
+	free(n);
 	return (NULL);
 }
 
